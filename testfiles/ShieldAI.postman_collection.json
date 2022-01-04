@@ -1,0 +1,136 @@
+{
+	"info": {
+		"_postman_id": "58aae8de-d1ee-4935-b2f0-7f37425760d8",
+		"name": "ShieldAI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "GetQueryResult",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "86f2bdb199a24578928aec54f3c4b4c6",
+						"type": "default"
+					},
+					{
+						"key": "Ocp-Apim-Trace",
+						"value": "true",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"query\": \"FlightEvents | count\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://shieldai-apim.azure-api.net/shieldaifunctionapp/GetQueryResult",
+					"protocol": "https",
+					"host": [
+						"shieldai-apim",
+						"azure-api",
+						"net"
+					],
+					"path": [
+						"shieldaifunctionapp",
+						"GetQueryResult"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InsertFlightData",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "86f2bdb199a24578928aec54f3c4b4c6",
+						"type": "default"
+					},
+					{
+						"key": "Ocp-Apim-Trace",
+						"value": "true",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"data\": [\n        [\"V-BAT\", \"1\", \"2021-01-01T00:00:00.000000\", \"2021-01-01T00:00:30.000000\", \"xn76m27ty9g4\"],\n        [\"V-BAT\", \"2\", \"2021-01-01T00:00:30.000000\", \"2021-01-01T00:01:00.000000\", \"xn76m27ty9g5\"],\n        [\"V-BAT\", \"3\", \"2021-01-01T00:01:00.000000\", \"2021-01-01T00:01:30.000000\", \"xn76m27ty9g6\"],\n        [\"V-BAT\", \"4\", \"2021-01-01T00:01:30.000000\", \"2021-01-01T00:02:00.000000\", \"xn76m27ty9g7\"],\n        [\"V-BAT\", \"5\", \"2021-01-01T00:02:00.000000\", \"2021-01-01T00:02:30.000000\", \"xn76m27ty9g8\"],\n        [\"V-BAT\", \"6\", \"2021-01-01T00:02:30.000000\", \"2021-01-01T00:03:00.000000\", \"xn76m27ty9g9\"],\n        [\"V-BAT\", \"7\", \"2021-01-01T00:03:00.000000\", \"2021-01-01T00:03:30.000000\", \"xn76m27ty9ga\"],\n        [\"V-BAT\", \"8\", \"2021-01-01T00:03:30.000000\", \"2021-01-01T00:03:40.000000\", \"xn76m27ty9gb\"],\n        [\"V-BAT\", \"9\", \"2021-01-01T00:03:40.000000\", \"2021-01-01T00:03:45.000000\", \"xn76m27ty9gc\"],\n        [\"V-BAT\", \"10\", \"2021-01-01T00:03:45.000000\", \"2021-01-01T00:03:46.000000\", \"xn76m27ty9gd\"]\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://shieldai-apim.azure-api.net/shieldaifunctionapp/InsertFlightData",
+					"protocol": "https",
+					"host": [
+						"shieldai-apim",
+						"azure-api",
+						"net"
+					],
+					"path": [
+						"shieldaifunctionapp",
+						"InsertFlightData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "InsertFlightDataBulk",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Ocp-Apim-Subscription-Key",
+						"value": "86f2bdb199a24578928aec54f3c4b4c6",
+						"type": "default"
+					},
+					{
+						"key": "Ocp-Apim-Trace",
+						"value": "true",
+						"type": "default",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/Users/danielbyun/home/code/shieldAI/testfiles/testdata_1mb.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://shieldai-apim.azure-api.net/shieldaifunctionapp/InsertFlightDataBulk",
+					"protocol": "https",
+					"host": [
+						"shieldai-apim",
+						"azure-api",
+						"net"
+					],
+					"path": [
+						"shieldaifunctionapp",
+						"InsertFlightDataBulk"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

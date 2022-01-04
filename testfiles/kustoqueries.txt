@@ -1,0 +1,46 @@
+.create table FlightEvents (name: string, generation: string, start_time: datetime, end_time: datetime, geo_location_hash: string)
+
+.alter table FlightEvents policy ingestionbatching @'{"MaximumBatchingTimeSpan":"00:00:30", "MaximumNumberOfItems": 500, "MaximumRawDataSizeMB": 1024}'
+
+.alter table FlightEvents ingestion csv mapping "Mapping1"
+'['
+'    {"Column": "name", "DataType": "string", "Properties": {"Ordinal": "0"}},'
+'    {"Column": "generation", "DataType": "string", "Properties": {"Ordinal": "1"}},'
+'    {"Column": "start_time", "DataType": "datetime", "Properties": {"Ordinal": "2"}},'
+'    {"Column": "end_time", "DataType": "datetime", "Properties": {"Ordinal": "3"}},'
+'    {"Column": "geo_location_hash", "DataType": "string", "Properties": {"Ordinal": "4"}}'
+']'
+
+.alter table FlightEvents ingestion csv mapping "Mapping1"
+'['
+'    {"Column": "name", "DataType": "string", "Properties": {"Ordinal": "0"}},'
+'    {"Column": "generation", "DataType": "string", "Properties": {"Ordinal": "1"}},'
+'    {"Column": "start_time", "DataType": "datetime", "Properties": {"Ordinal": "2"}},'
+'    {"Column": "end_time", "DataType": "datetime", "Properties": {"Ordinal": "3"}},'
+'    {"Column": "geo_location_hash", "DataType": "string", "Properties": {"Ordinal": "4"}},'
+'    {"Column": "extra1", "DataType": "bool", "Properties": {"Ordinal": "5"}}'
+']'
+
+.alter table FlightEvents ingestion csv mapping "Mapping1"
+'['
+'    {"Column": "name", "DataType": "string", "Properties": {"Ordinal": "0"}},'
+'    {"Column": "generation", "DataType": "string", "Properties": {"Ordinal": "1"}},'
+'    {"Column": "start_time", "DataType": "datetime", "Properties": {"Ordinal": "2"}},'
+'    {"Column": "end_time", "DataType": "datetime", "Properties": {"Ordinal": "3"}},'
+'    {"Column": "geo_location_hash", "DataType": "string", "Properties": {"Ordinal": "4"}},'
+'    {"Column": "extra1", "DataType": "bool", "Properties": {"Ordinal": "5"}},'
+'    {"Column": "extra2", "DataType": "string", "Properties": {"Ordinal": "6"}},'
+']'
+
+
+FlightEvents
+| where start_time between(datetime('2021-01-01')..datetime('2021-01-02'))
+
+
+FlightEvents
+| where generation == '2'
+
+FlightEvents
+| where end_time - start_time < 1m
+
+.clear table FlightEvents data 
